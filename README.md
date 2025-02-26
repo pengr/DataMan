@@ -1,4 +1,3 @@
-# DataMan
 # The ranking results of DataMan's Pointwise Rating and Qurating's Pairwise Rating.
 
 ## 1. Ranked by Writing Style
