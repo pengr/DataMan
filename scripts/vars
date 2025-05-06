@@ -1,0 +1,4 @@
+CODE_DIR=xxxx/DataMan
+CONDA_DIR=xxxx/anaconda3
+DATA_DIR=xxxx/data
+CKPT_DIR=xxxx/checkpoints

@@ -1,0 +1,70 @@
+# https://github.com/huggingface/datatrove/pull/159
+name: PyPI release
+on:
+  workflow_dispatch:
+
+jobs:
+  testing:
+    uses: ./.github/workflows/testing.yml
+  release:
+    needs: testing
+    runs-on: ubuntu-latest
+    env:
+      TWINE_USERNAME: __token__
+
+    permissions:
+      contents: write  # needed to create a tag
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Install build dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -U twine build
+
+      - name: Build the dist files
+        run: python -m build .
+
+      - name: Publish to the test PyPI
+        env:
+          TWINE_PASSWORD: ${{ secrets.TEST_PYPI_TOKEN }}
+        run: twine upload dist/* --skip-existing --repository=testpypi
+
+      - name: Get tag name
+        id: get_tag_name
+        run: |
+          echo TAG_NAME=$(grep '^version' pyproject.toml | head -1 | cut -d '"' -f 2) >> $GITHUB_OUTPUT
+
+      - name: Test installing from test PyPI and running tests
+        # install the wheel we just uploaded to testpypi directly, and all other dependencies from normal pypi
+        # uses the version number to fetch the url of the .whl file
+        run: |
+          python -m pip install uv
+          uv pip install --system datatrove[testing]@$(curl -s https://test.pypi.org/simple/datatrove/ | grep ${{ steps.get_tag_name.outputs.TAG_NAME }}-py3 | sed -nE 's/.*href="([^"]+)".*/\1/p')
+          python -m nltk.downloader punkt
+          python -m pytest -sv ./tests/
+
+      - name: Tag the release
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: 'refs/tags/v${{ steps.get_tag_name.outputs.TAG_NAME }}',
+              sha: context.sha
+            })
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # needed to tag
+
+      - name: Publish to PyPI
+        env:
+          TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
+        run: twine upload dist/* --repository=pypi
