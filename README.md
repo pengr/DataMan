@@ -1,5 +1,5 @@
 ## DataMan: Data Manager for Pre-training Large Language Models [[Paper]](https://openreview.net/forum?id=eNbA8Fqir4)
-![](https://github.com/pengr/DataMan/ICLR2025_DataMan_poster.png)
+![](https://github.com/pengr/DataMan/tree/main/ICLR2025_DataMan_poster.png)
 
 
 ## Citation
