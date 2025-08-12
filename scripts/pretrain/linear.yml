@@ -1,0 +1,12 @@
+models:
+  - model: {{MODEL1}}
+    parameters:
+      weight: 1.0
+  - model: {{MODEL2}}
+    parameters:
+      weight: 1.0
+  - model: {{MODEL3}}
+    parameters:
+      weight: 1.0
+merge_method: linear
+dtype: float32

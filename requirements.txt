@@ -1,0 +1,43 @@
+#pytorch 1.12 and above, 2.0 and above are recommended
+pip install torch==2.1.2 torchvision==0.16.2 torchaudio==2.1.2
+pip install jsonlines
+pip install gevent
+#(for Qwen transformers>=4.32, for Qwen1.5/2 transformers>= 4.37.0)
+pip install transformers 
+pip install wandb
+pip install accelerate
+pip install tiktoken
+pip install einops
+pip install transformers_stream_generator
+pip install peft 
+pip install deepspeed
+#if pip install failed, see https://github.com/mpi4py/mpi4py/issues/335, https://blog.csdn.net/liuliqun520/article/details/125416284
+pip install mpi4py
+#if pip install failed, see https://github.com/oobabooga/text-generation-webui/issues/4182
+FLASH_ATTENTION_FORCE_BUILD=TRUE pip install flash-attn --no-build-isolation
+#Below are optional. Installing them might be slow.
+git clone https://github.com/Dao-AILab/flash-attention
+cd flash-attention
+pip install csrc/layer_norm
+#If the version of flash-attn is higher than 2.1.1, the following is not needed.
+pip install csrc/rotary
+pip install vllm
+pip install ray
+# huggingface
+pip install -U huggingface_hub
+export HF_ENDPOINT=https://hf-mirror.com
+# gguf,llama.cpp
+git clone https://github.com/ggerganov/llama.cpp
+cd llama.cpp
+make
+# lm_eval
+git clone https://github.com/EleutherAI/lm-evaluation-harness
+cd lm-evaluation-harness
+pip install -e .
+# fire, alpaca_eval, 需要修改底层代码
+pip install fire
+pip install alpaca_eval
+# alpaca-farm
+pip install alpaca-farm
+pip install mergekit
+pip install datatrove

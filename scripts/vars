@@ -1,0 +1,4 @@
+CODE_DIR=/mnt/nas/pengru.pr/DataMan
+CONDA_DIR=/root/anaconda3
+DATA_DIR=/mnt/nas/pengru.pr/data
+CKPT_DIR=/mnt/nas/pengru.pr/checkpoints
