@@ -94,8 +94,8 @@ Your response must be a valid Python dictionary and should contain nothing else 
     def dash_call(self, **kwargs):
         # print("dash_call")
         # print(kwargs)
-        os.environ['DASHSCOPE_API_KEY'] = 'sk-996d1049591c486494f073c868e92ad5'
-        CALL_URL = 'https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions'
+        os.environ['DASHSCOPE_API_KEY'] = 'xxxxxxx'
+        CALL_URL = 'xxxxx'
         HEADERS = {
             'Content-Type': 'application/json',
             "Authorization": f"Bearer {os.environ['DASHSCOPE_API_KEY']}"
