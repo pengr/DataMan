@@ -1,3 +1,18 @@
+#!/bin/bash
+
+# Set mirror source and proxy (optional)
+export PIP_INDEX_URL="https://pypi.tuna.tsinghua.edu.cn/simple"
+export PIP_TRUSTED_HOST="pypi.tuna.tsinghua.edu.cn"
+
+## create conda virtual environment, python 3.8, CUDA 11.4 and above are recommended (this is for GPU users, flash-attention users, etc.)
+wget https://repo.anaconda.com/archive/Anaconda3-2024.02-1-Linux-x86_64.sh
+cd "$PWD/DataMan"
+bash Anaconda3-2024.02-1-Linux-x86_64.sh -b -p "$PWD/anaconda3"
+source "$PWD/anaconda3/bin/activate"
+
+# Or, you can activate an existing dataman virtual environment
+# source /miniconda3/bin/activate dataman
+
 #pytorch 1.12 and above, 2.0 and above are recommended
 pip install torch==2.1.2 torchvision==0.16.2 torchaudio==2.1.2
 pip install jsonlines
