@@ -10,7 +10,7 @@ cd "$PWD/DataMan"
 bash Anaconda3-2024.02-1-Linux-x86_64.sh -b -p "$PWD/anaconda3"
 source "$PWD/anaconda3/bin/activate"
 
-# Or, you can activate an existing dataman virtual environment
+## Or, you can activate an existing dataman virtual environment
 # source /miniconda3/bin/activate dataman
 
 #pytorch 1.12 and above, 2.0 and above are recommended
@@ -18,7 +18,7 @@ pip install torch==2.1.2 torchvision==0.16.2 torchaudio==2.1.2
 pip install jsonlines
 pip install gevent
 #(for Qwen transformers>=4.32, for Qwen1.5/2 transformers>= 4.37.0)
-pip install transformers 
+pip install transformers
 pip install wandb
 pip install accelerate
 pip install tiktoken
@@ -31,12 +31,12 @@ pip install mpi4py
 #if pip install failed, see https://github.com/oobabooga/text-generation-webui/issues/4182
 FLASH_ATTENTION_FORCE_BUILD=TRUE pip install flash-attn --no-build-isolation
 #Below are optional. Installing them might be slow.
-git clone https://github.com/Dao-AILab/flash-attention
+git clone -b v2.5.6 --depth 1 https://github.com/Dao-AILab/flash-attention
 cd flash-attention
-pip install csrc/layer_norm
+pip install csrc/layer_norm --no-build-isolation
 #If the version of flash-attn is higher than 2.1.1, the following is not needed.
 pip install csrc/rotary
-pip install vllm
+pip install vllm==0.3.3
 pip install ray
 # huggingface
 pip install -U huggingface_hub
