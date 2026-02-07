@@ -34,7 +34,7 @@ make
 git clone https://github.com/EleutherAI/lm-evaluation-harness
 cd lm-evaluation-harness
 pip install -e .
-# fire, alpaca_eval, 需要修改底层代码
+# fire, alpaca_eval, need to modify the underlying code
 pip install fire
 pip install alpaca_eval
 # alpaca-farm
