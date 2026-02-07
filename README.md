@@ -48,8 +48,7 @@ Our trained models have not yet passed the company’s open-source disclosure pr
 ### 1. Installing the Repo and Environment
 Clone this repo and create a new environment based on `python 3.11.7`. Install the requirements in the following order:
 ```bash
-pip install torch==2.1.2 torchvision==0.16.2 torchaudio==2.1.2
-pip install -r requirements.txt
+bash requirements.sh
 ```
 My Conda environment configuration is available in `config.yml` for reference.
 
